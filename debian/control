@@ -1,0 +1,19 @@
+Source: multicorn
+Section: python
+Priority: optional
+Maintainer: Paul Tagliamonte <paultag@debian.org>
+Build-Depends: debhelper (>= 9),
+ python | python-all | python-dev | python-all-dev
+Standards-Version: 3.9.5
+Homepage: 
+
+Package: multicorn
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
+Description: Multi corns.
+ foo
+ foo
+ foo
+ foo
+ foo
+ foo

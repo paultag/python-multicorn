@@ -1,0 +1,27 @@
+diff --git a/Makefile b/Makefile
+index 7a089cd..487c24d 100755
+--- a/Makefile
++++ b/Makefile
+@@ -23,7 +23,7 @@ preflight-check:
+ python_code: setup.py
+ 	cp ./setup.py ./setup--$(EXTVERSION).py
+ 	sed -i -e "s/__VERSION__/$(EXTVERSION)-dev/g" ./setup--$(EXTVERSION).py
+-	$(PYTHON) ./setup--$(EXTVERSION).py install
++	$(PYTHON) ./setup--$(EXTVERSION).py install --install-layout=deb --root=$(DESTDIR)
+ 	rm ./setup--$(EXTVERSION).py
+ 
+ release-zip: all
+diff --git a/setup.py b/setup.py
+index 0000c89..e817469 100755
+--- a/setup.py
++++ b/setup.py
+@@ -13,7 +13,8 @@ include_dirs = [get_pg_config(d) for d in ("includedir", "pkgincludedir", "inclu
+ 
+ multicorn_utils_module = Extension('multicorn._utils',
+         include_dirs=include_dirs,
+-        extra_compile_args = ['-shared'],
++        libraries=['python2.7'],
++        extra_link_args = ['-shared'],
+         sources=['src/utils.c'])
+ 
+ setup(
